@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Ramsha's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="script.js"></script>
+</head>
+<body class="dark-theme"> <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-links">
+                <button onclick="scrollToSection('home')" class="nav-button">Home</button>
+                <button onclick="scrollToSection('about')" class="nav-button">About me</button>
+                <button onclick="scrollToSection('academic')" class="nav-button">Academic Profile</button>
+                <button onclick="scrollToSection('skills')" class="nav-button">Skills</button>
+                <button onclick="scrollToSection('projects')" class="nav-button">Projects</button>
+                <button onclick="scrollToSection('certifications')" class="nav-button">Certifications</button>
+                <button onclick="scrollToSection('experience')" class="nav-button">Experience</button>
+            </div>
+            <button id="theme-toggle" class="nav-button" aria-label="Toggle theme">
+                <i data-lucide="sun" id="theme-icon"></i> </button>
+        </div>
+    </nav>
+    <section id="home" class="home-section">
+        <div class="container">
+            <div class="home-content">
+                <div class="introduction">
+                    <h2>
+                        Hi, <br>
+                        I'm <span>Ramsha Akhter</span>
+                    </h2>
+                    <h3 class="text-animate">
+                        I'm a <span class="multiple-text"></span>
+                        <span class="typed-cursor" aria-hidden="true">|</span>
+                    </h3>
+                    <p class="quote">"Data is the new oil, and I'm here to refine it."</p>
+
+                    <div class="social-links">
+                        <a href="mailto:ramshakhter23@gmail.com" class="social-link">
+                            <i data-lucide="mail" size="24"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/ramsha-akhter" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i data-lucide="linkedin" size="24"></i>
+                        </a>
+                        <a href="https://github.com/RamshaAkhter" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i data-lucide="github" size="24"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profile-picture">
+                    <img src="./Profile.jpg" alt="Profile">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Me Section -->
+    <section id="about" class="about-me-section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-text">
+                I'm Ramsha, a master's student in Data Science with a keen eye for patterns and a love for turning raw data into meaningful insights. With experience in data visualization, predictive modeling, and ETL workflows, I enjoy solving complex problems and optimizing processes to drive smarter decision-making.
+            <p class="about-text">
+                My expertise lies in Python, SQL, Power BI, and Tableau, and I thrive in Agile environments, collaborating with cross-functional teams to build data-driven solutions. Whether it's cleaning messy datasets, building predictive models, or crafting compelling dashboards, I strive to make data work smarter and more efficiently.
+            </p>
+            <p class="about-text">
+                Beyond the technical side, I believe in continuous learning and innovation, always looking for ways to refine my skills and stay ahead in the ever-evolving world of data science.
+            </p>
+        </div>
+    </section>
+    <section id="academic" class="academic-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i data-lucide="graduation-cap" class="accent-icon"></i>
+                Academic Profile
+            </h2>
+            <div class="education-cards">
+                <div class="education-card">
+                    <div class="edu-content">
+                        <div class="edu-details">
+                            <h3 class="university">University of Texas at Arlington</h3>
+                            <p class="degree">M.S. in Data Science</p>
+                            <p class="gpa">GPA: <span class="highlight">4.0</span></p>
+                            <p class="year">Expected: May 2025</p>
+                        </div>
+                    </div>
+                    <div class="university-image">
+                        <img src="./UTA.png" alt="UTA">
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="edu-content">
+                        <div class="edu-details">
+                            <h3 class="university">Jawaharlal Nehru Technological University</h3>
+                            <p class="degree">Bachelor's in Computer Science</p>
+                            <p class="gpa">GPA: <span class="highlight">3.28</span></p>
+                            <p class="year">Graduated: May 2022</p>
+                        </div>
+                    </div>
+                    <div class="university-image">
+                        <img src="./jntuh.png" alt="JNTU">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i data-lucide="code" class="accent-icon"></i>
+                Skills
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming</h3>
+                    <p>Python (including Pandas, NumPy, Matplotlib, Seaborn), R, SQL, Java, C/C++, MATLAB, HTML/CSS, JavaScript</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Data Science</h3>
+                    <p>Statistical analysis, Regression Model, Machine Learning, NLP, Data wrangling</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Data Engineering</h3>
+                    <p>ETL, Data warehousing, AWS, SQL Server, Data integration, Data validation</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Frameworks</h3>
+                    <p>Git, Slack, VS Code, Excel, Power BI, Tableau, Google Data Studio</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Soft Skills</h3>
+                    <p>Data-driven Storytelling, Strategic Decision Making, Critical Thinking, Teamwork, Collaboration, Adaptability, Project Management, Leadership</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="image-container">
+                        <img src="./image/Dashboard.png" alt="Netflix Dashboard" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Netflix Dashboard</h3>
+                        <p class="project-description">
+                            Developed an interactive Tableau dashboard analyzing 6,235 Netflix Movies & TV Shows, ensuring data accuracy through cleaning and transformation. Highlighted trends in release years, type distribution, and ratings.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Data Cleaning</span>
+                            <span class="tech-tag">EDA</span>
+                            <span class="tech-tag">Interactive Dashboards</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i data-lucide="github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="project-card">
+                    <div class="image-container">
+                        <img src="./image/Youtube.jpg" alt="YouTube Summarizer" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">YouTube Summarizer</h3>
+                        <p class="project-description">
+                            Developed a web application using data science techniques for automatic YouTube video summarization. Employed a transformer-based machine learning model to generate concise and accurate summaries.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">YouTube-API</span>
+                            <span class="tech-tag">Transformers</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i data-lucide="github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="project-card">
+                    <div class="image-container">
+                        <img src="./image/library.jpg" alt="University Library Database" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">University Library Database</h3>
+                        <p class="project-description">
+                            Developed a database for a university library, covering members, books, catalog, and borrow records. Created an EER schema, mapped it to a relational schema, and implemented it using MySQL.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">Omega</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i data-lucide="github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="project-card">
+                    <div class="image-container">
+                        <img src="./image/CNN.jpg" alt="Image Classification with CNNs" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Image Classification with CNNs</h3>
+                        <p class="project-description">
+                            Trained and evaluated CNNs on the Imagenette dataset using PyTorch Lightning. Performed transfer learning with the CIFAR10 dataset to improve model accuracy.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">PyTorch Lightning</span>
+                            <span class="tech-tag">Imagenette</span>
+                            <span class="tech-tag">CIFAR10</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i data-lucide="github"></i>
+                                <span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="project-card">
+    <div class="image-container">
+        <img src="./image/Railway.jpeg" alt="Railway Booking System" class="project-image">
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">Railway Booking System</h3>
+        <p class="project-description">
+            Developed a railway booking system that dynamically updates with each booking and cancellation. Designed and implemented a relational database to manage passengers, train schedules, and seat availability.
+        </p>
+        <div class="project-technologies">
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Database Design</span>
+        </div>
+        <div class="project-links">
+            <a href="#" class="project-link">
+                <i data-lucide="github"></i>
+                <span>View Code</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="project-card">
+    <div class="image-container">
+        <img src="image\Healthcare.png" alt="Healthcare Dashboard" class="project-image">
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">Healthcare Dashboard</h3>
+        <p class="project-description">
+            Built an insightful and detailed healthcare dashboard using Power BI to analyze financial performance and provider insights. Used Power Query, DAX, and custom PowerPoint designs to enhance visualization.
+        </p>
+        <div class="project-technologies">
+            <span class="tech-tag">Power BI</span>
+            <span class="tech-tag">DAX</span>
+            <span class="tech-tag">Power Query</span>
+            <span class="tech-tag">Data Visualization</span>
+        </div>
+        <div class="project-links">
+            <a href="#" class="project-link">
+                <i data-lucide="github"></i>
+                <span>View Code</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+    <section id="certifications" class="certifications-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i data-lucide="award" class="accent-icon"></i>
+                Certifications
+            </h2>
+            <div class="cert-cards">
+                <!-- Certification 1: Salesforce Certified AI Associate -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3>Salesforce Certified AI Associate</h3>
+                        <p class="issuer">Salesforce</p>
+                        <p class="validity">Issued Feb 2025</p>
+                        <p class="credential">Credential ID: 5756129</p>
+                    </div>
+                    <i data-lucide="award" class="cert-icon"></i>
+                </div>
+    
+                <!-- Certification 2: AWS Certified Cloud Practitioner -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3>AWS Certified Cloud Practitioner</h3>
+                        <p class="issuer">Amazon Web Services (AWS)</p>
+                        <p class="validity">Issued Feb 2025 · Expires Feb 2028</p>
+                    </div>
+                    <i data-lucide="award" class="cert-icon"></i>
+                </div>
+    
+                <!-- Certification 3: Academy Accreditation - Generative AI Fundamentals -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3>Academy Accreditation - Generative AI Fundamentals</h3>
+                        <p class="issuer">Databricks</p>
+                        <p class="validity">Issued Feb 2025 · Expires Feb 2027</p>
+                        <p class="credential">Credential ID: 131906652</p>
+                    </div>
+                    <i data-lucide="award" class="cert-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i data-lucide="briefcase" class="accent-icon"></i>
+                Work Experience
+            </h2>
+            <div class="experience-cards">
+                <div class="experience-card">
+                    <div class="exp-header">
+                        <h3>Research Assistant – SEAR Lab</h3>
+                        <p class="duration">Aug 2024–Dec 2024</p>
+                    </div>
+                    <p class="exp-duration">~5 months</p>
+                    <ul class="exp-details">
+                        <li>Analyzed the flow of 18 critical minerals across the United States, focusing on key imports and exports by value and quantity.</li>
+                        <li>Applied advanced data cleaning techniques and developed insightful visualizations to support strategic decision-making.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="exp-header">
+                        <h3>Associate Analyst – Jade Global, Inc.</h3>
+                        <p class="duration">Aug 2022–June 2023</p>
+                    </div>
+                    <p class="exp-duration">~11 months</p>
+                    <h4>KLA Corporation - Data Migration and Quality Assurance</h4>
+                    <ul class="exp-details">
+                        <li>Designed and executed the migration of over 500,000 records from HANA to Snowflake.</li>
+                        <li>Conducted advanced data quality assessments using SQL.</li>
+                        <li>Developed and optimized ETL workflows.</li>
+                    </ul>
+                    <h4>Nonprofits Insurance Alliance - Data Module Integration</h4>
+                    <ul class="exp-details">
+                        <li>Built and integrated data modules using the Boomi platform.</li>
+                        <li>Collaborated with a cross-functional team to resolve critical data issues.</li>
+                        <li>Developed custom SQL scripts for automated workflows.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="exp-header">
+                        <h3>Data Analyst Intern – Jade Global, Inc.</h3>
+                        <p class="duration">Sep 2021–July 2022</p>
+                    </div>
+                    <p class="exp-duration">~11 months</p>
+                    <ul class="exp-details">
+                        <li>Played a key role in a global data migration project.</li>
+                        <li>Improved problem-solving and attention to detail through cross-functional collaboration.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h2 class="footer-name">Ramsha Akhter</h2>
+            <div class="social-links-footer">
+                <a href="https://github.com/RamshaAkhter" target="_blank" rel="noopener noreferrer" class="social-link-footer">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://linkedin.com/in/ramsha-akhter" target="_blank" rel="noopener noreferrer" class="social-link-footer">
+                    <i data-lucide="linkedin"></i>
+                </a>
+                <a href="mailto:ramshakhter23@gmail.com" class="social-link-footer">
+                    <i data-lucide="mail"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                Copyright © <span>RamshaAkhter</span> All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i data-lucide="arrow-up" size="20"></i>
+    </button>
+</body>
+</html>
