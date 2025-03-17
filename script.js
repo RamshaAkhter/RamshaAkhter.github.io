@@ -207,3 +207,55 @@ function type() {
 document.addEventListener("DOMContentLoaded", function() {
     type(); // Start typing when the page loads
 });
+
+// Mobile menu functionality - Fixed
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Initialize Lucide icons
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+    
+    // Toggle menu when hamburger icon is clicked
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function(event) {
+            event.stopPropagation(); // Stop event from bubbling up
+            navLinks.classList.toggle('show');
+        });
+    }
+    
+    // Handle navigation button clicks
+    const navButtons = document.querySelectorAll('.nav-links .nav-button');
+    navButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    navLinks.classList.remove('show');
+                }, 300); // Slight delay to ensure the click registers
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768 && 
+            !event.target.closest('.nav-links') && 
+            !event.target.closest('.menu-toggle') &&
+            navLinks.classList.contains('show')) {
+            navLinks.classList.remove('show');
+        }
+    });
+    
+    // Prevent clicks inside the menu from closing it
+    navLinks.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+    
+    // Ensure theme toggle is outside the collapsible menu
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle && window.innerWidth <= 768) {
+        themeToggle.parentNode.insertBefore(themeToggle, navLinks);
+    }
+});
