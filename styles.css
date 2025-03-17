@@ -1,11 +1,11 @@
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Dark Theme Color Variables (Default) */
+/* Theme Color Variables */
 :root {
     /* Base Colors */
-    --color-background: #0a0a0a; /* Default background is dark */
-    --color-text: #ffffff;       /* Default text is light */
+    --color-background: #0a0a0a;
+    --color-text: #ffffff;
     --color-grey-text: #a0a0a0;
     --color-soft-black: #151515;
     --color-light-black: #202020;
@@ -14,22 +14,28 @@
     --color-light-grey-bg: #303030;
     --color-soft-grey-bg: #121212;
 
-    /* Accent Color */
+    /* Accent Colors */
     --color-accent: #9d5cff;
     --color-accent-soft: #7c3aff;
+    --color-accent-transparent: rgba(157, 92, 255, 0.1);
 
     /* Functional Colors */
     --color-shadow: rgba(0, 0, 0, 0.3);
     --color-overlay: rgba(0, 0, 0, 0.8);
+    --color-border: rgba(255, 255, 255, 0.1);
 
     /* Font Variables */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Transitions */
+    --transition-standard: all 0.3s ease;
+    --transition-theme: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Light Theme Color Variables (Applied when body has 'light-theme' class) */
+/* Light Theme Color Variables */
 body.light-theme {
-    --color-background: #f9f9f9; /* Light background */
-    --color-text: #333333;       /* Dark text */
+    --color-background: #f9f9f9;
+    --color-text: #333333;
     --color-grey-text: #707070;
     --color-soft-black: #ffffff;
     --color-light-black: #f0f0f0;
@@ -37,11 +43,14 @@ body.light-theme {
     --color-medium-grey-text: #707070;
     --color-light-grey-bg: #e0e0e0;
     --color-soft-grey-bg: #dddddd;
-    --color-shadow: rgba(0, 0, 0, 0.1); /* Lighter shadow for light theme */
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --color-border: #cccccc;
+    --color-accent: #6a1b9a; /* Darker purple for light theme contrast */
+    --color-accent-soft: #9c27b0; /* Slightly lighter shade of accent */
+    --color-accent-transparent: rgba(157, 92, 255, 0.2);
 }
 
-
-/* Reset & Base Styles (No changes needed here) */
+/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -54,18 +63,88 @@ html {
 
 body {
     font-family: var(--font-primary);
-    background-color: var(--color-background); /* Use variable */
-    color: var(--color-dark-grey-text);     /* Use variable */
+    background-color: var(--color-background);
+    color: var(--color-dark-grey-text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition for theme change */
+    transition: var(--transition-theme);
 }
 
 .container {
     width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+/* Shared Section Styles */
+section {
+    padding: 5rem 0;
+    transition: var(--transition-theme);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--color-text);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+.accent-icon {
+    color: var(--color-accent);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-soft-black);
+    transition: var(--transition-theme);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 5px;
+    transition: var(--transition-theme);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-soft);
 }
 
 /* Navigation */
@@ -73,19 +152,13 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--color-soft-black); /* Use variable */
+    background: var(--color-soft-black);
     box-shadow: 0 2px 10px var(--color-shadow);
     z-index: 1000;
     padding: 1rem 0;
     backdrop-filter: blur(10px);
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
+    transition: var(--transition-theme);
 }
-
-body.light-theme .navbar {
-    background: var(--color-soft-black); /* Background for light theme navbar */
-    box-shadow: 0 2px 10px var(--color-shadow); /* Shadow for light theme navbar */
-}
-
 
 .nav-content {
     display: flex;
@@ -103,11 +176,11 @@ body.light-theme .navbar {
 .nav-button {
     background: none;
     border: none;
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: var(--transition-standard);
     padding: 0.5rem 1rem;
     border-radius: 4px;
 }
@@ -115,48 +188,51 @@ body.light-theme .navbar {
 .nav-button:hover {
     color: var(--color-accent);
 }
-body.light-theme .nav-button {
-    color: var(--color-text); /* Text color for light theme nav buttons */
+
+/* Mobile Menu Styles */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
 }
 
+#theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
 
 /* Home Section */
 .home-section {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    padding: 6rem 0;
-    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-soft-black) 100%); /* Use variables */
-    transition: background 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .home-section {
-    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-light-black) 100%); /* Background for light theme home section */
-}
-/* Ensure the section takes full width and aligns content to the left */
-.home-section {
-    display: flex;
-    flex-direction: column; /* Stack the elements vertically */
-    align-items: flex-start; /* Align content to the left */
-    justify-content: center; /* Vertically center the content */
-    padding: 2rem;
-    width: 100%; /* Full width */
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-soft-black) 100%);
+    transition: var(--transition-theme);
 }
 
 .home-section h2 {
-    font-size: 2.5rem; /* Reduced size for the main heading */
+    font-size: 2.5rem;
     font-weight: bold;
     color: var(--color-text);
     margin-bottom: 1rem;
-    align-self: flex-start; /* Align the heading to the left */
+    align-self: flex-start;
 }
 
 .home-section h2 span {
-    font-size: 3rem; /* Slightly bigger size for the name */
+    font-size: 3rem;
     color: var(--color-accent);
 }
 
 .text-animate {
-    font-size: 1.8rem; /* Adjusted size for the animated text */
+    font-size: 1.8rem;
 }
 
 .home-content {
@@ -164,6 +240,7 @@ body.light-theme .home-section {
     justify-content: space-around;
     align-items: center;
     gap: 4rem;
+    width: 100%;
 }
 
 .introduction {
@@ -172,14 +249,14 @@ body.light-theme .home-section {
 
 .greeting {
     font-size: 2rem;
-    color: var(--color-grey-text); /* Use variable */
+    color: var(--color-grey-text);
     margin-bottom: 1rem;
 }
 
 .name {
     font-size: 4rem;
     font-weight: bold;
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
     margin-bottom: 1rem;
 }
 
@@ -193,46 +270,38 @@ body.light-theme .home-section {
 
 .title {
     font-size: 2.5rem;
-    color: var(--color-dark-grey-text); /* Use variable */
+    color: var(--color-dark-grey-text);
     margin-bottom: 0.5rem;
 }
 
 .subtitle {
     font-size: 1.5rem;
-    color: var(--color-medium-grey-text); /* Use variable */
+    color: var(--color-medium-grey-text);
     margin-bottom: 2rem;
 }
 
 .quote {
     font-style: italic;
-    color: var(--color-grey-text); /* Use variable */
+    color: var(--color-grey-text);
     font-size: 1.2rem;
     margin-bottom: 2rem;
     padding: 1rem;
-    background: var(--color-soft-black); /* Use variable */
+    background: var(--color-soft-black);
     border-left: 4px solid var(--color-accent);
     border-radius: 0 8px 8px 0;
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .quote {
-    background: var(--color-light-black); /* Background for light theme quote */
+    transition: var(--transition-theme);
 }
 
-
-/* Profile Picture (No changes needed) */
+/* Profile Picture */
 .profile-picture {
     width: 300px;
     height: 300px;
     border-radius: 20px;
     overflow: hidden;
-    border: 4px solid var(--color-light-black); /* Use variable */
+    border: 4px solid var(--color-light-black);
     box-shadow: 0 0 20px var(--color-shadow);
+    transition: var(--transition-theme);
 }
-body.light-theme .profile-picture {
-    border: 4px solid var(--color-light-black); /* Border color for light theme profile picture */
-    box-shadow: 0 0 20px var(--color-shadow);
-}
-
 
 .profile-picture img {
     width: 100%;
@@ -240,7 +309,7 @@ body.light-theme .profile-picture {
     object-fit: cover;
 }
 
-/* Social Links (No changes needed) */
+/* Social Links */
 .social-links {
     display: flex;
     gap: 2rem;
@@ -248,54 +317,20 @@ body.light-theme .profile-picture {
 }
 
 .social-link {
-    color: var(--color-dark-grey-text); /* Use variable */
-    transition: all 0.3s ease;
+    color: var(--color-dark-grey-text);
+    transition: var(--transition-standard);
 }
 
 .social-link:hover {
     color: var(--color-accent);
     transform: translateY(-2px);
 }
-body.light-theme .social-link {
-    color: var(--color-dark-grey-text); /* Social link color for light theme */
-}
 
-
-/* Section Styles (No changes needed) */
-section {
-    padding: 5rem 0;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--color-text); /* Use variable */
-    margin-bottom: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.accent-icon {
-    color: var(--color-accent);
-}
 /* About Me Section */
 .about-me-section {
     padding: 5rem 0;
-    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-soft-black) 100%); /* Match home section gradient */
-    transition: background 0.5s ease; /* Smooth transition for theme change */
-}
-
-body.light-theme .about-me-section {
-    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-light-black) 100%); /* Background for light theme */
-}
-
-.about-me-section .section-title {
-    font-size: 2.5rem;
-    color: var(--color-text);
-    text-align: center;
-    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-soft-black) 100%);
+    transition: var(--transition-theme);
 }
 
 .about-me-section .about-text {
@@ -306,39 +341,150 @@ body.light-theme .about-me-section {
     margin: 0 auto 1.5rem auto;
 }
 
+/* Responsive Design for Home & About Sections */
+@media (max-width: 1024px) {
+    .home-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .name {
+        font-size: 3rem;
+    }
+
+    .profile-picture {
+        width: 250px;
+        height: 250px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-section,
+    .about-me-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-content {
+        justify-content: space-between;
+        padding: 0 1.5rem;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: var(--color-soft-black);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        box-shadow: 0 5px 10px var(--color-shadow);
+        transform: translateY(-150%); 
+        max-height: 0;
+        overflow: hidden;
+        transition: transform 0.3s ease, max-height 0.3s ease, opacity 0.3s ease;
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none; 
+    }
+
+    .nav-links.show {
+        transform: translateY(0);
+        max-height: 100vh;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-button {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .home-content {
+        gap: 2rem;
+    }
+
+    .home-section h2 {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+    
+    .home-section h2 span {
+        font-size: 2.5rem;
+    }
+    
+    .text-animate {
+        font-size: 1.5rem;
+    }
+    
+    .profile-picture {
+        margin: 0 auto;
+    }
+
+    .greeting,
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .about-me-section .about-text {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .name {
+        font-size: 2.5rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .profile-picture {
+        width: 200px;
+        height: 200px;
+    }
+
+    .quote {
+        font-size: 1rem;
+    }
+}
 
 /* Academic Section Styles */
 .academic-section {
     padding: 5rem 0;
-    background: var(--color-background); /* Use variable */
+    background: var(--color-background);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .academic-section {
-    background: var(--color-background); /* Background for light theme academic section */
+    transition: var(--transition-theme);
 }
 
-
-/* Container (No changes needed) */
-.academic-section .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-/* Section Title (No changes needed) */
-.academic-section .section-title {
-    color: var(--color-text); /* Use variable */
-    font-size: 3.5rem;
-    text-align: center;
-    margin-bottom: 4rem;
-    font-weight: 600;
-}
-
-/* Education Cards Container (No changes needed) */
+/* Education Cards Container */
 .education-cards {
     display: flex;
     flex-direction: column;
@@ -349,21 +495,28 @@ body.light-theme .academic-section {
 
 /* Individual Education Card */
 .education-card {
-    background: var(--color-light-black); /* Use variable */
+    background: var(--color-light-black);
     border-radius: 20px;
     padding: 2.5rem;
     padding-right: 160px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .education-card {
-    background: var(--color-soft-black); /* Background for light theme education cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
     box-shadow: 0 4px 6px var(--color-shadow);
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
 }
 
+/* Card animation delays */
+.education-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
 
-/* Purple gradient border (No changes needed) */
+.education-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+/* Purple gradient border */
 .education-card::before {
     content: '';
     position: absolute;
@@ -371,38 +524,38 @@ body.light-theme .education-card {
     top: 0;
     bottom: 0;
     width: 4px;
-    background: linear-gradient(180deg, #9d5cff 0%, #5c1cff 100%);
+    background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-accent-soft) 100%);
     border-radius: 4px;
 }
 
-/* Card hover effect (No changes needed) */
+/* Card hover effect */
 .education-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* University Name (No changes needed) */
+/* University Name */
 .education-card .university {
     font-size: 2rem;
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
     font-weight: 600;
     margin-bottom: 1rem;
     line-height: 1.3;
 }
 
-/* Degree Name (No changes needed) */
+/* Degree Name */
 .education-card .degree {
     font-size: 1.25rem;
-    color: var(--color-medium-grey-text); /* Use variable */
+    color: var(--color-medium-grey-text);
     margin-bottom: 1rem;
     line-height: 1.4;
 }
 
-/* GPA and Year (No changes needed) */
+/* GPA and Year */
 .education-card .gpa,
 .education-card .year {
     font-size: 1.1rem;
-    color: var(--color-medium-grey-text); /* Use variable */
+    color: var(--color-medium-grey-text);
     margin-bottom: 0.5rem;
     line-height: 1.4;
 }
@@ -416,23 +569,17 @@ body.light-theme .education-card {
     width: 120px;
     height: 120px;
     border-radius: 12px;
-    background: var(--color-light-grey-bg); /* Use variable */
+    background: var(--color-light-grey-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    border: 1px solid #333;
+    border: 1px solid var(--color-border);
     overflow: hidden;
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .education-card .university-image {
-    background: var(--color-light-grey-bg); /* Background for light theme uni images */
-    border: 1px solid #ccc; /* Lighter border for light theme uni images */
+    transition: var(--transition-theme), transform 0.3s ease;
 }
 
-
-
-/* University Logo Image (No changes needed) */
+/* University Logo Image */
 .education-card .university-image img {
     width: 100%;
     height: 100%;
@@ -441,24 +588,18 @@ body.light-theme .education-card .university-image {
     max-height: 100%;
 }
 
-/* GPA Highlight (No changes needed) */
+/* GPA Highlight */
 .education-card .gpa .highlight {
-    color: #9d5cff;
+    color: var(--color-accent);
     font-weight: 600;
 }
 
-/* Hover animation for image (No changes needed) */
+/* Hover animation for image */
 .education-card:hover .university-image {
     transform: translateY(-50%) scale(1.05);
-    transition: transform 0.3s ease;
 }
 
-/* Card shadow effect (No changes needed) */
-.education-card {
-    box-shadow: 0 4px 6px var(--color-shadow);
-}
-
-/* Responsive Design for Academic Section (No changes needed) */
+/* Responsive Design for Academic Section */
 @media screen and (max-width: 1024px) {
     .academic-section .section-title {
         font-size: 3rem;
@@ -477,6 +618,7 @@ body.light-theme .education-card .university-image {
 
     .education-card {
         padding: 2rem;
+        padding-right: 2rem;
         text-align: center;
     }
 
@@ -510,92 +652,66 @@ body.light-theme .education-card .university-image {
         padding: 1.5rem;
     }
 
+    .education-card .university {
+        font-size: 1.3rem;
+    }
+
     .education-card .university-image {
         width: 80px;
         height: 80px;
     }
 }
 
-/* Animation for cards (No changes needed) */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.education-card {
-    animation: fadeInUp 0.5s ease forwards;
-    opacity: 0;
-}
-
-.education-card:nth-child(1) {
-    animation-delay: 0.2s;
-}
-
-.education-card:nth-child(2) {
-    animation-delay: 0.4s;
-}
-
 /* Skills Section */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .skill-card {
-    background: var(--color-light-black); /* Use variable */
+    background: var(--color-light-black);
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 4px 15px var(--color-shadow);
     border-left: 4px solid var(--color-accent);
-    transition: transform 0.3s ease, background-color 0.5s ease; /* Smooth transition for theme change */
+    transition: transform 0.3s ease, background-color 0.5s ease, box-shadow 0.3s ease;
 }
-body.light-theme .skill-card {
-    background: var(--color-soft-black); /* Background for light theme skill cards */
-    box-shadow: 0 4px 15px var(--color-shadow);
-}
-
 
 .skill-card:hover {
     transform: translateY(-5px);
-    background: var(--color-soft-black); /* Use variable */
+    background: var(--color-soft-black);
 }
 
 .skill-card h3 {
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
     margin-bottom: 1rem;
     font-size: 1.3rem;
 }
 
 /* Experience Section */
 .experience-card {
-    background: var(--color-light-black); /* Use variable */
+    background: var(--color-light-black);
     border-radius: 10px;
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: 0 4px 15px var(--color-shadow);
     border-left: 4px solid var(--color-accent);
-    transition: transform 0.3s ease, background-color 0.5s ease; /* Smooth transition for theme change */
+    transition: transform 0.3s ease, background-color 0.5s ease, box-shadow 0.3s ease;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
-body.light-theme .experience-card {
-    background: var(--color-soft-black); /* Background for light theme experience cards */
-    box-shadow: 0 4px 15px var(--color-shadow);
-}
-
 
 .experience-card:hover {
     transform: translateX(10px);
-    background: var(--color-soft-black); /* Use variable */
+    background: var(--color-soft-black);
 }
 
 .exp-header h3 {
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
@@ -605,369 +721,83 @@ body.light-theme .experience-card {
     font-size: 0.9rem;
 }
 
-/* Projects Section */
-.project-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.project-content {
-    padding: 1.5rem;
-}
-
-/* Ensure the text color is different for each theme */
-.projects-section h2 {
-    color: var(--color-text); /* Default text color */
-}
-
-/* Dark theme */
-body.dark-theme .projects-section h2 {
-    color: white; /* White color for dark theme */
-}
-
-/* Light theme */
-body.light-theme .projects-section h2 {
-    color: black; /* Black color for light theme */
-}
-
-/* Tech tags styling */
-.tech-tag {
-    background: var(--color-soft-black); /* Use variable */
-    color: var(--color-accent);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    margin-right: 0.5rem;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
-}
-
-body.light-theme .tech-tag {
-    background: var(--color-soft-black); /* Background for light theme tech tags */
-    color: var(--color-accent); /* Text color for light theme tech tags - keep accent color */
-}
-
-
-@media (max-width: 1024px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 per row on medium screens */
-    }
-}
-
+/* Responsive Design for Skills and Experience */
 @media (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 per row on small screens */
-    }
-}
-/* Certifications Section */
-.cert-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.cert-card {
-    background: var(--color-light-black); /* Use variable */
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 4px 15px var(--color-shadow);
-    border-left: 4px solid var(--color-accent);
-    transition: transform 0.3s ease, background-color 0.5s ease; /* Smooth transition for theme change */
-}
-
-body.light-theme .cert-card {
-    background: var(--color-soft-black); /* Background for light theme cert cards */
-    box-shadow: 0 4px 15px var(--color-shadow);
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-}
-
-.cert-icon {
-    color: var(--color-accent);
-    font-size: 2rem;
-}
-
-
-/* Responsive Design for Home Section (No changes needed) */
-@media (max-width: 1024px) {
-    .home-content {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 2rem 0;
-    }
-
-    .name {
-        font-size: 3rem;
-    }
-
-    .profile-picture {
-        width: 250px;
-        height: 250px;
-    }
-
-    .social-links {
-        justify-content: center;
-    }
-
-    .education-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .university-image {
-        margin-top: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .nav-button {
-        font-size: 0.9rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .skills-grid,
-    .cert-cards,
-    .projects-grid {
+    .skills-grid {
         grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+    
+    .experience-card {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .experience-card:hover {
+        transform: translateY(-5px);
     }
 }
 
-/* Animations (No changes needed) */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@media (max-width: 480px) {
+    .skill-card,
+    .experience-card {
+        padding: 1.5rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .skills-grid{
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-}
-
-.animate {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--color-soft-black); /* Use variable */
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme ::-webkit-scrollbar-track {
-    background: var(--color-light-grey-bg); /* Scrollbar track for light theme */
-}
-
-
-::-webkit-scrollbar-thumb {
-    background: var(--color-accent);
-    border-radius: 5px;
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent-soft);
+    
+    .skill-card h3,
+    .exp-header h3 {
+        font-size: 1.2rem;
+    }
 }
 
 /* Projects Section Styles */
-:root {
-    --bg-primary: #000000;
-    --bg-secondary: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: #808080;
-    --accent-color: #9d5cff;
-    --accent-hover: #7c3aff;
-}
-
 .projects-section {
-    padding: 5rem 0; /* Removed horizontal padding */
-    background: var(--bg-primary);
+    padding: 5rem 0;
+    background: var(--color-background);
     min-height: 100vh;
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
+    transition: var(--transition-theme);
 }
-body.light-theme .projects-section {
-    background: var(--color-background); /* Background for light theme projects section */
-}
-
 
 .projects-section .container {
     margin: 0 auto;
-    padding: 0 4rem; /* Added padding for consistent side spacing */
+    padding: 0 2rem;
 }
 
-/* Section Title (No changes needed) */
-.projects-section .section-title {
-    font-size: 3.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--text-primary);
-    font-weight: 600;
-}
-
-/* Projects Grid (No changes needed) */
+/* Projects Grid */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    width: 100%; /* Changed from 95% to use container padding instead */
+    width: 100%;
     margin: 0 auto;
 }
 
 /* Project Card */
 .project-card {
-    background: var(--bg-secondary);
+    background: var(--color-light-black);
     border-radius: 16px;
     overflow: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .project-card {
-    background: var(--color-soft-black); /* Background for light theme project cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
     box-shadow: 0 4px 6px var(--color-shadow);
-}
-
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Project Image (No changes needed) */
-.image-container {
-    width: 100%;
-    height: 200px; /* Reduced from 220px */
-    overflow: hidden;
-    position: relative;
-}
-
-.project-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image {
-    transform: scale(1.02);
-}
-
-/* Project Content (No changes needed) */
-.project-content {
-    padding: 1.5rem; /* Reduced from 1.8rem */
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Project Title (No changes needed) */
-.project-title {
-    font-size: 1.5rem; /* Reduced from 1.8rem */
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    font-weight: 600;
-    line-height: 1.3;
-}
-
-/* Project Description (No changes needed) */
-.project-description {
-    color: var(--text-secondary);
-    font-size: 1rem; /* Reduced from 1.1rem */
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
-    flex-grow: 1;
-}
-
-/* Technologies Tags */
-.project-technologies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem; /* Reduced from 0.8rem */
-    margin-bottom: 1.2rem;
-}
-
-.tech-tag {
-    background: rgba(157, 92, 255, 0.1);
-    color: var(--accent-color);
-    padding: 0.4rem 0.8rem; /* Reduced padding */
-    border-radius: 6px;
-    font-size: 0.9rem; /* Reduced from 1rem */
-    transition: background-color 0.3s ease, background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .tech-tag {
-    background: rgba(157, 92, 255, 0.2);
-}
-
-
-.tech-tag:hover {
-    background: rgba(157, 92, 255, 0.2);
-}
-
-/* Project Links (No changes needed) */
-.project-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: auto;
-}
-
-.project-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 1rem; /* Reduced from 1.1rem */
-    padding: 0.5rem 0;
-    transition: color 0.3s ease;
-}
-
-.project-link:hover {
-    color: var(--accent-color);
-}
-
-.project-link i {
-    transition: transform 0.3s ease;
-}
-
-.project-link:hover i {
-    transform: translateX(3px);
-}
-
-/* Animations (No changes needed) */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.project-card {
     animation: fadeInUp 0.5s ease forwards;
     opacity: 0;
 }
 
+/* Animation delays */
 .project-card:nth-child(1) {
     animation-delay: 0.1s;
 }
@@ -984,7 +814,109 @@ body.light-theme .tech-tag {
     animation-delay: 0.4s;
 }
 
-/* Responsive Design for Projects Section (No changes needed) */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Image */
+.image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid var(--color-border);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.02);
+}
+
+/* Project Content */
+.project-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Project Title */
+.project-title {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* Project Description */
+.project-description {
+    color: var(--color-medium-grey-text);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+}
+
+/* Technologies Tags */
+.project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.tech-tag {
+    background: var(--color-accent-transparent);
+    color: var(--color-accent);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.tech-tag:hover {
+    background: rgba(157, 92, 255, 0.2);
+}
+
+/* Project Links */
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--color-accent);
+}
+
+.project-link i {
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover i {
+    transform: translateX(3px);
+}
+
+/* Responsive Design for Projects Section */
 @media screen and (max-width: 1200px) {
     .projects-section .container {
         padding: 0 2rem;
@@ -996,6 +928,10 @@ body.light-theme .tech-tag {
 }
 
 @media screen and (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .project-title {
         font-size: 1.4rem;
     }
@@ -1023,10 +959,6 @@ body.light-theme .tech-tag {
         margin-bottom: 2.5rem;
     }
 
-    .image-container {
-        height: 180px;
-    }
-
     .project-content {
         padding: 1.2rem;
     }
@@ -1035,10 +967,6 @@ body.light-theme .tech-tag {
 @media screen and (max-width: 480px) {
     .projects-section .container {
         padding: 0 1rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
     }
 
     .project-title {
@@ -1050,7 +978,7 @@ body.light-theme .tech-tag {
     }
 
     .image-container {
-        height: 160px;
+        height: 180px;
     }
 
     .tech-tag {
@@ -1059,48 +987,67 @@ body.light-theme .tech-tag {
     }
 }
 
-/* Custom Scrollbar for Projects Section (No changes needed) */
-.projects-section::-webkit-scrollbar {
-    width: 8px;
+/* Certifications Section */
+.cert-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.projects-section::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
-}
-body.light-theme .projects-section::-webkit-scrollbar-track {
-    background: var(--color-light-grey-bg); /* Scrollbar track for light theme projects section */
-}
-
-
-.projects-section::-webkit-scrollbar-thumb {
-    background: var(--accent-color);
-    border-radius: 4px;
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
+.cert-card {
+    background: var(--color-light-black);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px var(--color-shadow);
+    border-left: 4px solid var(--color-accent);
+    transition: transform 0.3s ease, background-color 0.5s ease;
 }
 
-.projects-section::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-hover);
+.cert-card:hover {
+    transform: translateY(-5px);
 }
 
+.cert-icon {
+    color: var(--color-accent);
+    font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+    .cert-cards {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+    }
+    
+    .cert-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cert-card {
+        padding: 1rem;
+    }
+
+    .cert-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
 
 /* Footer Styles */
 .footer {
     padding: 3rem 0;
-    background: var(--color-background); /* Use variable */
+    background: var(--color-background);
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background-color 0.5s ease; /* Smooth transition for theme change */
+    border-top: 1px solid var(--color-light-grey-bg);
+    transition: background-color 0.5s ease;
 }
-body.light-theme .footer {
-    background: var(--color-background); /* Background for light theme footer */
-    border-top: 1px solid #ccc; /* Lighter border for light theme footer */
-}
-
 
 .footer-name {
     font-size: 2.5rem;
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
     margin-bottom: 1.5rem;
     font-weight: 600;
 }
@@ -1108,40 +1055,35 @@ body.light-theme .footer {
 .social-links-footer {
     display: flex;
     justify-content: center;
-    gap: 2rem; /* Increased gap */
-    margin: 2rem 0; /* Added margin */
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 .social-link-footer {
-    width: 50px; /* Increased size */
+    width: 50px;
     height: 50px;
-    background: var(--color-light-black); /* Use variable */
+    background: var(--color-light-black);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease, background-color 0.5s ease; /* Smooth transition for theme change */
-    border: 1px solid #333; /* Added border */
+    transition: all 0.3s ease, background-color 0.5s ease;
+    border: 1px solid var(--color-light-grey-bg);
 }
-body.light-theme .social-link-footer {
-    background: var(--color-soft-grey-bg); /* Background for light theme footer social links */
-    border: 1px solid #ccc; /* Lighter border for light theme footer social links */
-}
-
 
 .social-link-footer svg {
     width: 24px;
     height: 24px;
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
 }
 
 .social-link-footer:hover {
-    background: #9d5cff; /* Purple on hover */
+    background: var(--color-accent-soft);
     transform: translateY(-3px);
 }
 
 .copyright {
-    color: var(--color-medium-grey-text); /* Use variable */
+    color: var(--color-medium-grey-text);
     font-size: 0.95rem;
     display: flex;
     align-items: center;
@@ -1150,7 +1092,7 @@ body.light-theme .social-link-footer {
 }
 
 .copyright span {
-    color: var(--color-text); /* Use variable */
+    color: var(--color-text);
     font-weight: 500;
 }
 
@@ -1181,7 +1123,7 @@ body.light-theme .social-link-footer {
     width: 40px;
     height: 40px;
     background-color: var(--color-accent);
-    color: var(--color-white);
+    color: #ffffff;
     border-radius: 50%;
     border: none;
     cursor: pointer;
