@@ -9,8 +9,10 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="script.js"></script>
 </head>
-<body class="dark-theme"> <nav class="navbar">
+<body class="dark-theme"> 
+    <nav class="navbar">
         <div class="nav-content">
+            <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
             <div class="nav-links">
                 <button onclick="scrollToSection('home')" class="nav-button">Home</button>
                 <button onclick="scrollToSection('about')" class="nav-button">About me</button>
@@ -19,46 +21,33 @@
                 <button onclick="scrollToSection('skills')" class="nav-button">Skills</button>
                 <button onclick="scrollToSection('projects')" class="nav-button">Projects</button>
                 <button onclick="scrollToSection('certifications')" class="nav-button">Certifications</button>
-                
             </div>
             <button id="theme-toggle" class="nav-button" aria-label="Toggle theme">
-                <i data-lucide="sun" id="theme-icon"></i> </button>
+                <i data-lucide="sun" id="theme-icon"></i> 
+            </button>
         </div>
     </nav>
+    
     <section id="home" class="home-section">
         <div class="container">
             <div class="home-content">
                 <div class="introduction">
-                    <h2>
-                        Hi, <br>
-                        I'm <span>Ramsha Akhter</span>
-                    </h2>
-                    <h3 class="text-animate">
-                        I'm a <span class="multiple-text"></span>
-                        <span class="typed-cursor" aria-hidden="true">|</span>
-                    </h3>
+                    <h2>Hi, <br> I'm <span>Ramsha Akhter</span></h2>
+                    <h3 class="text-animate">I'm a <span class="multiple-text"></span><span class="typed-cursor" aria-hidden="true">|</span></h3>
                     <p class="quote">"From data chaos to data coherence"</p>
-
                     <div class="social-links">
-                        <a href="mailto:ramshakhter23@gmail.com" class="social-link">
-                            <i data-lucide="mail" size="24"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/ramsha-akhter" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i data-lucide="linkedin" size="24"></i>
-                        </a>
-                        <a href="https://github.com/RamshaAkhter" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i data-lucide="github" size="24"></i>
-                        </a>
+                        <a href="mailto:ramshakhter23@gmail.com" class="social-link"><i data-lucide="mail" size="24"></i></a>
+                        <a href="https://linkedin.com/in/ramsha-akhter" target="_blank" class="social-link"><i data-lucide="linkedin" size="24"></i></a>
+                        <a href="https://github.com/RamshaAkhter" target="_blank" class="social-link"><i data-lucide="github" size="24"></i></a>
                     </div>
                 </div>
-
                 <div class="profile-picture">
                     <img src="./Profile.jpg" alt="Profile">
                 </div>
             </div>
         </div>
     </section>
-    
+        
     <!-- About Me Section -->
     <section id="about" class="about-me-section">
         <div class="container">
